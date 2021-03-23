@@ -1,7 +1,10 @@
 # VyOS_Automation
 Ansible premade scripts to automate various VyOS tasks.
 
-Set Hostname
-Set NTP
-Configure SSH + Key
-Set WAN interface + description
+## Phase 1 Basic device configuration
+
+- Set Hostname
+- Set DNS
+- Set NTP + Sync
+- Device Hardening
+- Set interface WAN Interface
