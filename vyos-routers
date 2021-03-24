@@ -1,4 +1,4 @@
-[vyos]
+[vyos_hosts]
 192.168.0.150
 
 [vyos_hosts:vars]
