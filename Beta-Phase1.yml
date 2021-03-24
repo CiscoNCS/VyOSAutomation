@@ -1,0 +1,32 @@
+---
+  - hosts: Test1
+    connection: network_cli
+    gather_facts: 'no'
+
+    vars_prompt:
+      - name: "hostname"
+        prompt: "Enter a Hostname for this router."
+        private: no
+      - name: "nameservers1"
+        prompt: "Please enter upstream DNS Server 1."
+        private: no
+      - name: "nameservers2"
+        prompt: "Please enter upstream DNS Server 2."
+        private: no
+      - name: "ntpserver1"
+        prompt: "Please enter NTP Server 1"
+        private: no
+      - name: "ntpserver2"
+        prompt: "Please enter NTP Server 2"
+        private: no
+
+    tasks:
+      - name: Configure Hostname
+        vyos_config:
+          lines:
+          
+          - set system host-name "{{ hostname }}"
+          - set system name-server "{{ nameservers1 }}"
+          - set system name-server "{{ nameservers2 }}"
+          - set system ntp server "{{ ntpserver1 }}"
+          - set system ntp server "{{ ntpserver2 }}"
