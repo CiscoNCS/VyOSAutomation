@@ -25,9 +25,7 @@
       - name: "password"
         prompt: "Add system account new password. Which will be used on youre next login."
         private: yes
-        encrypt: sha512_crypt
         confirm: yes
-        salt_size: 7
 
     tasks:
       - name: Phase 1 System Configuration
