@@ -9,10 +9,6 @@ Ansible playbooks to configure almost all different kinds of VyOS deployments. P
 - paramiko
 - Ansible
 
-#
-
-
-
 ## Phase 1 Configuration
 
 - Set Hostname
@@ -21,14 +17,8 @@ Ansible playbooks to configure almost all different kinds of VyOS deployments. P
 - Device Hardening
 - Set interface WAN Interface
 
-#
-
 ## Phase 2 Configuration
 
 
-#
+
 ## Phase 3 Configuration
-
-#
-
-#
