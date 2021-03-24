@@ -1,0 +1,14 @@
+---
+  - hosts: Test1
+    connection: network_cli
+    gather_facts: 'no'
+
+    tasks:
+      - name: Phase 1 configuration of Vyos
+        vyos_config:
+          lines:
+            - set system host-name Test-R1
+            - set system name-server 1.1.1.1
+            - set system ntp server 0.uk.pool.ntp.org
+            - set system ntp server 1.uk.pool.ntp.org
+            - set system ntp server 2.uk.pool.ntp.org

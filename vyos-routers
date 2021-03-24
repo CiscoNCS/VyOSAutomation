@@ -1,8 +1,9 @@
 [vyos_hosts]
-192.168.0.150
+Test1 ansible_ssh_host=192.168.0.150
 
 [vyos_hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_user=vyos
+ansible_password=test
 ansible_network_os=vyos
 ansible_connection=network_cli
