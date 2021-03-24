@@ -7,6 +7,8 @@
       - name: Phase 1 configuration of Vyos
         vyos_config:
           lines:
+            - set system login user config0x1 full-name "ansible created"
+            - set system login user config0x1 authentication plaintext-password test123
             - set system host-name Test-R1
             - set system name-server 1.1.1.1
             - set system name-server 1.0.0.1
