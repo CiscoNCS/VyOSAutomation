@@ -8,20 +8,29 @@
         prompt: "Enter a Hostname for this router."
         private: no
       - name: "nameservers1"
-        prompt: "Please enter upstream DNS Server 1."
+        prompt: "Enter upstream DNS Server 1."
         private: no
       - name: "nameservers2"
-        prompt: "Please enter upstream DNS Server 2."
+        prompt: "Enter upstream DNS Server 2."
         private: no
       - name: "ntpserver1"
-        prompt: "Please enter NTP Server 1"
+        prompt: "Enter NTP Server 1"
         private: no
       - name: "ntpserver2"
-        prompt: "Please enter NTP Server 2"
+        prompt: "Enter NTP Server 2"
         private: no
+      - name: "username"
+        prompt: "Add system account as default account (vyos) has been deleted."
+        private: no
+      - name: "password"
+        prompt: "Add system account new password. Which will be used on youre next login."
+        private: yes
+        encrypt: sha512_crypt
+        confirm: yes
+        salt_size: 7
 
     tasks:
-      - name: Configure Hostname
+      - name: Phase 1 System Configuration
         vyos_config:
           lines:
           
@@ -30,3 +39,4 @@
           - set system name-server "{{ nameservers2 }}"
           - set system ntp server "{{ ntpserver1 }}"
           - set system ntp server "{{ ntpserver2 }}"
+          - set system login user {{ username }} authentication plaintext-password {{ password }}
