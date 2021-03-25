@@ -9,5 +9,5 @@ ansible_python_interpreter=/usr/bin/python3
 ansible_user=vyos
 # Change password to the new one you set.
 ansible_password=vyos
-ansible_network_os=test
+ansible_network_os=vyos
 ansible_connection=network_cli
