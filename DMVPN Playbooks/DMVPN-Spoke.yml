@@ -24,3 +24,18 @@
   - hosts: vyos
     connection: network_cli
     gather_facts: 'no'
+
+    vars_prompt:
+    - name: "wanip1"
+      prompt: "Enter the Public IP of the router."
+      private: no
+    - name: "tunip1"
+      prompt: "Enter a tunnel IP. Example 172.16.16.1/27."
+      private: no
+    - name: "secret1"
+      prompt: "Enter a passphrase for the tunnel (8 Character long due to Cisco™ routers)."
+      private: yes
+    - name: "secret2"
+      prompt: "Enter the same passphrase you did for then tunnel (8 Character long due to Cisco™ routers)."
+
+      
