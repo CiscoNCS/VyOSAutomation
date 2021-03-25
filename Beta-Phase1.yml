@@ -46,6 +46,9 @@
       - name: "ntpserver2"
         prompt: "Enter NTP Server 2."
         private: no
+      - name: "domain"
+        prompt: "Enter NTP Server 2."
+        private: no
     # Phase 1.2 System Monitoring user inputs.
       - name: "netflowver"
         prompt: "Type the version of netflow you would like to use."
@@ -90,6 +93,7 @@
           - set system name-server "{{ nameservers2 }}"
           - set system ntp server "{{ ntpserver1 }}"
           - set system ntp server "{{ ntpserver2 }}"
+          - set system domain-name {{ domain }}
 
     
       - name: Phase 1.2 System Monitoring Netflow v9.
