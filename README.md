@@ -1,5 +1,15 @@
-# VyOS_Automation
-Ansible playbooks to configure almost all different kinds of VyOS deployments.
+# VyOS Automation Ansible
+
+VyOS + Ansible Playbooks for different kinds of setup.
+
+* ZeroTouchVyOS Playbook
+* DMVPN Playbook
+* DMVPN (BGP) Playbook
+* IPSEC and BGP Playbook
+* IPSEC and GRE Playbook
+* LAN + WAN Playbook
+* User Creation and SSH Key Playbook
+
 
 # Read the requirements to have a successful runtime. 
 
@@ -11,6 +21,7 @@ Ansible playbooks to configure almost all different kinds of VyOS deployments.
 * SSH Keys
 * paramiko
 * Ansible
+* VyOS
 
 
 # ZeroTouchVyOS Playbook
