@@ -66,19 +66,19 @@
         private: yes
         confirm: yes
       - name: "sshkeyID"
-        prompt: "Specify SSH key ID example engineer@admin1-pc."
+        prompt: "Specify SSH key ID example (engineer@dev.)"
         private: no
         confirm: no
+      - name: "username2"
+        prompt: "Specify username that you want to use a ssh public key that is loaded from id_rsa.pub file."
+        private: no
+      - name: "username3"
+        prompt: "Specify username to set SSH key type authentication."
+        private: no
       - name: "sshkeyID2"
-        prompt: "Specify SSH key ID example engineer@admin1-pc."
+        prompt: "Specify SSH key ID to set the key type to ssh-rsa example > (engineer@dev.)"
         private: no
         confirm: no
-      - name: "usernam2"
-        prompt: "Specify username to set SSH key authentication."
-        private: no
-      - name: "usernam3"
-        prompt: "Specify username specify username to set SSH key authentication."
-        private: no
 
     tasks:
       - name: Phase 1.1 System Configuration.
@@ -91,28 +91,28 @@
           - set system ntp server "{{ ntpserver1 }}"
           - set system ntp server "{{ ntpserver2 }}"
 
-    tasks:
+    
       - name: Phase 1.2 System Monitoring Netflow v9.
         vyos_config:
-          line:
-          
+          lines:
+          - set system flow-accounting interface eth0
           - set system flow-accounting enable-egress
-          - set system flow-accounting netflow version {{ netflowver }} port {{ netflowport }}
-          - set system flow-accounting netflow server {{ netflowserver }}
+          - set system flow-accounting netflow version {{ netflowver }}
+          - set system flow-accounting netflow server {{ netflowserver }} port {{ netflowport }}
           - set system flow-accounting netflow sampling-rate 100
           - set system flow-accounting netflow timeout expiry-interval 30
 
-    tasks:
+    
       - name: Phase 1.3 System Hardening v1.
         vyos_config:
-          line:
+          lines:
 
           - set system login user {{ username }} authentication plaintext-password {{ password }}
           - set system login user {{ username2 }} authentication public-keys {{ sshkeyID }} key "{{ lookup('file', 'id_rsa.pub') }}"
           - set system login user {{ username3 }} authentication public-keys {{ sshkeyID2 }} type ssh-rsa
 
 
-    tasks:
+    
       - name: Cleanup Process
         vyos_config:
           lines:
