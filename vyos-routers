@@ -1,12 +1,11 @@
 [vyos]
 # Example Test1 ansible_ssh_host=10.10.10.1
-Test1 ansible_ssh_host=192.168.0.150
 
 [vyos_hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
 # Change user once you ran the phase 1 playbook as the default vyos user been deleted.
 ansible_user=vyos
 # Change password to the new one you set.
-ansible_password=test
+ansible_password=vyos
 ansible_network_os=vyos
 ansible_connection=network_cli
