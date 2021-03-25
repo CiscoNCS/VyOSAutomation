@@ -1,26 +1,31 @@
 # VyOS_Automation
 Ansible playbooks to configure almost all different kinds of VyOS deployments.
 
-* Phase 1 playbook device configuration and hardening please read each phase roles and check you have the prerequisites to have a successful runtime 
+# Read the requirements to have a successful runtime. 
 
 ## Requirements
 
-- Pip Python3 
-- Openssh Server
-- SSH Keys
-- paramiko
-- Ansible
+* Pip Python3 
+* Openssh Server
+* SSH Keys
+* paramiko
+* Ansible
 
-## Phase 1 Configuration
+## Phase 1.1 System Configuration
 
-- Set Hostname
-- Set DNS
-- Set NTP + Sync
-- Device Hardening
-- Set interface WAN Interface
+* Hostname
+* DNS
+* NTP
+* Domain Name
 
-## Phase 2 Configuration
+## Phase 1.2 System Monitoring Netflow
+
+* Enables Netflow on eth0 interface
+* Enables Netflow egress 
+* Netflow Version
+* Netflow Server with Port (commonly 2055)
+* Enables Netflow Sample Rate flow at 100
+* Enables Netflow Timeout Interval for 30 seconds 
 
 
-
-## Phase 3 Configuration
+## Phase 1.3 System Hardening v1
