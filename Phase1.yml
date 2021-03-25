@@ -21,7 +21,8 @@
 #
 # NOTE: connection network_cli has been introduced in Ansible 2.5
 ---
-  - hosts: Test1
+  - hosts: 
+      vyos:
     connection: network_cli
     gather_facts: 'no'
 
