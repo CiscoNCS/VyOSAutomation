@@ -43,53 +43,40 @@
       - name: Phase 2.1 Tunnel Configuration.
         vyos_config:
           lines:
-
+          # Tunnel Interface Configuration
           - set interfaces tunnel tun1 address '{{ tunip1 }}'
-          - set interfaces tunnel tun1 encapsulation gre
-          - set interfaces tunnel tun1 local-ip {{ wanip1 }}
-          - set interfaces tunnel tun1 multicast enable
-          - set interfaces tunnel tun1 parameters ip key 1
-    tasks:
-      - name: Phase 2.2 NHRP Configuration.
-        vyos_config:
-          lines:
-
-          - set protocols nhrp tunnel tun1 cisco-authentication {{ secret1 }}
-          - set protocols nhrp tunnel tun1 holding-time 600
-          - set protocols nhrp tunnel tun1 multicast dynamic
+          - set interfaces tunnel tun1 encapsulation 'gre'
+          - set interfaces tunnel tun1 source-address '{{ wanip1 }}'
+          - set interfaces tunnel tun1 multicast 'enable'
+          - set interfaces tunnel tun1 parameters ip key '1'
+          # NHRP Phase
+          - set protocols nhrp tunnel tun1 cisco-authentication '{{ secret1 }}'
+          - set protocols nhrp tunnel tun1 holding-time '600'
+          - set protocols nhrp tunnel tun1 multicast 'dynamic'
           - set protocols nhrp tunnel tun1 redirect
           - set protocols nhrp tunnel tun1 shortcut
-
-    tasks:
-      - name: Phase 2.3 Encryption Configuration Hardening v1
-        vyos_config:
-          lines:
-
-          - set vpn ipsec esp-group ESP-HUB compression disable
-          - set vpn ipsec esp-group ESP-HUB lifetime 28800
-          - set vpn ipsec esp-group ESP-HUB mode transport
-          - set vpn ipsec esp-group ESP-HUB pfs dh-group21
-          - set vpn ipsec esp-group ESP-HUB proposal 1 encryption aes256
-          - set vpn ipsec esp-group ESP-HUB proposal 1 hash sha256
-          - set vpn ipsec esp-group ESP-HUB proposal 2 encryption aes256
-          - set vpn ipsec esp-group ESP-HUB proposal 2 hash sha256
-          - set vpn ipsec ike-group IKE-HUB ikev2-reauth no
-          - set vpn ipsec ike-group IKE-HUB key-exchange ikev1
-          - set vpn ipsec ike-group IKE-HUB lifetime 86400
-          - set vpn ipsec ike-group IKE-HUB proposal 1 dh-group 21
-          - set vpn ipsec ike-group IKE-HUB proposal 1 encryption aes256
-          - set vpn ipsec ike-group IKE-HUB proposal 1 hash sha256
-          - set vpn ipsec ike-group IKE-HUB proposal 2 dh-group 21
-          - set vpn ipsec ike-group IKE-HUB proposal 2 encryption aes256
-          - set vpn ipsec ike-group IKE-HUB proposal 2 hash sha256
-    tasks:
-      - name: Phase 2.4 IPSEC Profile Configuration and Authentication.
-        vyos_config:
-          lines:
-
-          - set vpn ipsec ipsec-interfaces interface eth0
-          - set vpn ipsec profile NHRPVPN authentication mode pre-shared-secret
-          - set vpn ipsec profile NHRPVPN authentication pre-shared-secret {{ secret2 }}
-          - set vpn ipsec profile NHRPVPN bind tunnel tun100
-          - set vpn ipsec profile NHRPVPN esp-group ESP-HUB
-          - set vpn ipsec profile NHRPVPN ike-group IKE-HUB
+          # Encryption Phase 
+          - set vpn ipsec esp-group ESP-HUB compression 'disable'
+          - set vpn ipsec esp-group ESP-HUB lifetime '28800'
+          - set vpn ipsec esp-group ESP-HUB mode 'transport'
+          - set vpn ipsec esp-group ESP-HUB pfs 'dh-group21'
+          - set vpn ipsec esp-group ESP-HUB proposal 1 encryption 'aes256'
+          - set vpn ipsec esp-group ESP-HUB proposal 1 hash 'sha256'
+          - set vpn ipsec esp-group ESP-HUB proposal 2 encryption 'aes256'
+          - set vpn ipsec esp-group ESP-HUB proposal 2 hash 'sha256'
+          - set vpn ipsec ike-group IKE-HUB ikev2-reauth 'no'
+          - set vpn ipsec ike-group IKE-HUB key-exchange 'ikev1'
+          - set vpn ipsec ike-group IKE-HUB lifetime '86400'
+          - set vpn ipsec ike-group IKE-HUB proposal 1 dh-group '21'
+          - set vpn ipsec ike-group IKE-HUB proposal 1 encryption 'aes256'
+          - set vpn ipsec ike-group IKE-HUB proposal 1 hash 'sha256'
+          - set vpn ipsec ike-group IKE-HUB proposal 2 dh-group '21'
+          - set vpn ipsec ike-group IKE-HUB proposal 2 encryption 'aes256'
+          - set vpn ipsec ike-group IKE-HUB proposal 2 hash 'sha256'
+          # IPSEC Phase
+          - set vpn ipsec ipsec-interfaces interface 'eth0'
+          - set vpn ipsec profile NHRPVPN esp-group 'ESP-HUB'
+          - set vpn ipsec profile NHRPVPN ike-group 'IKE-HUB'
+          - set vpn ipsec profile NHRPVPN authentication mode 'pre-shared-secret'
+          - set vpn ipsec profile NHRPVPN authentication pre-shared-secret '{{ secret2 }}'
+          - set vpn ipsec profile NHRPVPN bind tunnel 'tun1'
