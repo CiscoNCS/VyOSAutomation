@@ -1,6 +1,6 @@
 [vyos]
 # Example Test1 ansible_ssh_host=10.10.10.1
-
+Test1 ansible_ssh_host=192.168.0.150
 
 [vyos_hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
