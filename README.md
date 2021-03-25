@@ -7,7 +7,7 @@ VyOS + Ansible Playbooks for different kinds of setup.
 * DMVPN (BGP) Playbook
 * IPSEC and BGP Playbook
 * IPSEC and GRE Playbook
-* LAN + WAN Playbook
+* LAN Playbook
 * User Creation and SSH Key Playbook
 
 
