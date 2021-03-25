@@ -4,6 +4,7 @@
     gather_facts: 'no'
 
     vars_prompt:
+    # Phase 1 System Configuration user inputs.
       - name: "hostname"
         prompt: "Enter a Hostname for this router."
         private: no
@@ -26,6 +27,17 @@
         prompt: "Add system account new password. Which will be used on youre next login."
         private: yes
         confirm: yes
+    # Phase 2 System Monitoring user inputs.
+      - name: "netflowver"
+        prompt: "Type the version of netflow you would like to use."
+        private: no
+        confirm: yes
+      - name: "netflowport"
+        prompt: "Type the port of the netflow server it is listening on."
+        private: no
+      - name: "netflowserver"
+        prompt: "Enter the IP of the netflow server"
+        private: no
 
     tasks:
       - name: Phase 1 System Configuration
@@ -38,3 +50,25 @@
           - set system ntp server "{{ ntpserver1 }}"
           - set system ntp server "{{ ntpserver2 }}"
           - set system login user {{ username }} authentication plaintext-password {{ password }}
+
+    tasks:
+      - name: Phase 2 System Monitoring Netflow v9
+        vyos_config:
+          line:
+          
+          - set system flow-accounting enable-egress
+          - set system flow-accounting netflow version {{ netflowver }} port {{ netflowport }}
+          - set system flow-accounting netflow server {{ netflowserver }}
+          - set system flow-accounting netflow sampling-rate 100
+          - set system flow-accounting netflow timeout expiry-interval 30
+
+
+
+    tasks:
+      - name: Cleanup Process
+        vyos_config:
+          lines:
+
+          - delete system ntp server 0.pool.ntp.org
+          - delete system ntp server 1.pool.ntp.org
+          - delete system ntp server 2.pool.ntp.org
