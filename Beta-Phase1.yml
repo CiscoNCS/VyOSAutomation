@@ -59,7 +59,7 @@
         private: no
     # Phase 1.3 Device Hardening v1
       - name: "username"
-        prompt: "Specify Username (which you will use next logon.)"
+        prompt: "Specify username (which you will use next logon.)"
         private: no
       - name: "password"
         prompt: "Specify password. (Which will be used on youre next login.)"
@@ -69,6 +69,16 @@
         prompt: "Specify SSH key ID example engineer@admin1-pc."
         private: no
         confirm: no
+      - name: "sshkeyID2"
+        prompt: "Specify SSH key ID example engineer@admin1-pc."
+        private: no
+        confirm: no
+      - name: "usernam2"
+        prompt: "Specify username to set SSH key authentication."
+        private: no
+      - name: "usernam3"
+        prompt: "Specify username specify username to set SSH key authentication."
+        private: no
 
     tasks:
       - name: Phase 1.1 System Configuration.
@@ -98,9 +108,8 @@
           line:
 
           - set system login user {{ username }} authentication plaintext-password {{ password }}
-          - set service ssh disable-password-authentication
-          - set system login user {{ username }} authentication public-keys {{ sshkeyID }} key "{{ lookup('file', 'id_rsa.pub') }}"
-          - set system login user {{ username }} authentication public-keys {{ sshkeyID }} type ssh-rsa
+          - set system login user {{ username2 }} authentication public-keys {{ sshkeyID }} key "{{ lookup('file', 'id_rsa.pub') }}"
+          - set system login user {{ username3 }} authentication public-keys {{ sshkeyID2 }} type ssh-rsa
 
 
     tasks:
