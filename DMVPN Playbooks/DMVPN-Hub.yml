@@ -40,7 +40,7 @@
 
     
     tasks:
-      - name: Phase 2.1 Tunnel Configuration.
+      - name: Phase 2.1 DMVPN Hub Configuration.
         vyos_config:
           lines:
           # Tunnel Interface Configuration
