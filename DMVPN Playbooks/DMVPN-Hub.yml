@@ -65,7 +65,6 @@
       vyos_config:
         lines:
 
-
         - set vpn ipsec esp-group ESP-HUB compression disable
         - set vpn ipsec esp-group ESP-HUB lifetime 28800
         - set vpn ipsec esp-group ESP-HUB mode transport
