@@ -17,7 +17,7 @@
 ## by VyOS or the dev.
 ##
 # run the playbook with the -v option to see the collected facts:
-#    ansible-playbook -v Phase-1.yaml -u {username}
+#    ansible-playbook -v Phase1.yaml -u {username}
 #
 # NOTE: connection network_cli has been introduced in Ansible 2.5
 ---
