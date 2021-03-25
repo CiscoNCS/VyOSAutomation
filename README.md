@@ -5,7 +5,8 @@ Ansible playbooks to configure almost all different kinds of VyOS deployments.
 
 ## Requirements
 
-* Pip Python3 
+* Pip3 
+* Python3 
 * Openssh Server
 * SSH Keys
 * paramiko
@@ -29,3 +30,12 @@ Ansible playbooks to configure almost all different kinds of VyOS deployments.
 
 
 ## Phase 1.3 System Hardening v1
+
+* New Username and Password
+* Deletes default User (vyos)
+* Enables SSH key authentication for the user you specify and have created in Phase 1.1
+* Sets SSH key type to SSH-RSA which is by default used
+
+## Cleanup Process
+
+* Removes pre-configured NTP servers
