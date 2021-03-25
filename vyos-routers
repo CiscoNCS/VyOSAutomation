@@ -1,5 +1,6 @@
-[vyos_hosts]
+[vyos]
 # Example Test1 ansible_ssh_host=10.10.10.1
+
 
 [vyos_hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
