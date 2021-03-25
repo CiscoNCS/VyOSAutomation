@@ -69,10 +69,6 @@
         prompt: "Add SSH-RSA Pub key located in %home%/%user%.ssh/id_rsa.pub ."
         private: no
         confirm: no
-      - name: "sshkeytype"
-        prompt: "Enter the SSH key type (commonly is ssh-rsa.)"
-        private: no
-        confirm: no
 
     tasks:
       - name: Phase 1.1 System Configuration.
