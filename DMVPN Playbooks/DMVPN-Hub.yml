@@ -37,6 +37,7 @@
       private: yes
     - name: "secret2"
       prompt: "Enter the same passphrase you did for then tunnel (8 Character long due to Cisco™ routers)."
+      private: yes
 
     
     tasks:
