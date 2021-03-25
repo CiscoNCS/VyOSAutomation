@@ -17,7 +17,7 @@
 ## Author:  UK (Initials)
 ##
 ## This software is for demonstration purposes only and is not supported
-## by VyOS.
+## by VyOS or the dev.
 ##
 # run the playbook with the -v option to see the collected facts:
 #    ansible-playbook -v Phase-1.yaml -u {username}
