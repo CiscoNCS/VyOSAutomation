@@ -38,8 +38,15 @@
     - name: "secret2"
       prompt: "Enter the same passphrase you did for then tunnel (8 Character long due to Cisco™ routers)."
       private: yes
-    - name: ""nhrpserverip1"
-      prompt
+    - name: "nhrpserverip1"
+      prompt: "Enter the NHRP Server IP for NBMA (Tunnel IP)."
+      private: no
+    - name: "nbmaip1"
+      prompt: "Enter the NBMA IP (Public IP of the Hub)."
+      private: no
+    - name: "nhrpserverip2"
+      prompt: "Enter the NHRP Server IP you would like to register to (Tunnel IP)."
+      private: no
 
     tasks:
       - name: Phase 2.2 DMVPN Spoke Configuration.
@@ -47,15 +54,15 @@
           lines:
           # Tunnel Configuration
           - set interfaces tunnel tun1 address {{ tunip1 }}
-          - set interfaces tunnel tun1 local-ip 0.0.0.0
+          - set interfaces tunnel tun1 source-address 0.0.0.0
           - set interfaces tunnel tun1 encapsulation gre
           - set interfaces tunnel tun1 multicast enable
           - set interfaces tunnel tun1 parameters ip key 1
           # NHRP Phase
           - set protocols nhrp tunnel tun1 cisco-authentication {{ secret1 }}
           - set protocols nhrp tunnel tun1 holding-time 600
-          - set protocols nhrp tunnel tun1 map {{ nhrpserverip1 }} nbma-address 194.28.99.47
-          - set protocols nhrp tunnel tun1 map 172.16.253.134/29 register
+          - set protocols nhrp tunnel tun1 map {{ nhrpserverip1 }} nbma-address {{ nbmaip1 }}
+          - set protocols nhrp tunnel tun1 map {{ nhrpserverip2 }} register
           - set protocols nhrp tunnel tun1 multicast nhs
           - set protocols nhrp tunnel tun1 redirect
           - set protocols nhrp tunnel tun1 shortcut
