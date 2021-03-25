@@ -38,4 +38,48 @@
     - name: "secret2"
       prompt: "Enter the same passphrase you did for then tunnel (8 Character long due to Cisco™ routers)."
 
-      
+    tasks:
+      - name: Phase 2.2 DMVPN Spoke Configuration.
+        vyos_config:
+          lines:
+
+          set interfaces tunnel tun100 address 172.16.253.133/29
+set interfaces tunnel tun100 local-ip 0.0.0.0
+set interfaces tunnel tun100 encapsulation gre
+set interfaces tunnel tun100 multicast enable
+set interfaces tunnel tun100 parameters ip key 1
+
+set protocols nhrp tunnel tun100 cisco-authentication 68E80Uvj
+set protocols nhrp tunnel tun100 holding-time 600
+set protocols nhrp tunnel tun100 map 172.16.253.134/29 nbma-address 194.28.99.47
+set protocols nhrp tunnel tun100 map 172.16.253.134/29 register
+set protocols nhrp tunnel tun100 multicast nhs
+set protocols nhrp tunnel tun100 redirect
+set protocols nhrp tunnel tun100 shortcut
+
+set vpn ipsec esp-group ESP-HUB compression disable
+set vpn ipsec esp-group ESP-HUB lifetime 28800
+set vpn ipsec esp-group ESP-HUB mode transport
+set vpn ipsec esp-group ESP-HUB pfs dh-group21
+set vpn ipsec esp-group ESP-HUB proposal 1 encryption aes256
+set vpn ipsec esp-group ESP-HUB proposal 1 hash sha256
+set vpn ipsec esp-group ESP-HUB proposal 2 encryption aes256
+set vpn ipsec esp-group ESP-HUB proposal 2 hash sha256
+set vpn ipsec ike-group IKE-HUB close-action none
+set vpn ipsec ike-group IKE-HUB ikev2-reauth no
+set vpn ipsec ike-group IKE-HUB key-exchange ikev1
+set vpn ipsec ike-group IKE-HUB lifetime 86400
+set vpn ipsec ike-group IKE-HUB proposal 1 dh-group 21
+set vpn ipsec ike-group IKE-HUB proposal 1 encryption aes256
+set vpn ipsec ike-group IKE-HUB proposal 1 hash sha256
+set vpn ipsec ike-group IKE-HUB proposal 2 dh-group 21
+set vpn ipsec ike-group IKE-HUB proposal 2 encryption aes256
+set vpn ipsec ike-group IKE-HUB proposal 2 hash sha256
+
+set vpn ipsec ipsec-interfaces interface eth0
+
+set vpn ipsec profile NHRPVPN authentication mode pre-shared-secret
+set vpn ipsec profile NHRPVPN authentication pre-shared-secret {{ secret2 }}
+set vpn ipsec profile NHRPVPN bind tunnel tun100
+set vpn ipsec profile NHRPVPN esp-group ESP-HUB
+set vpn ipsec profile NHRPVPN ike-group IKE-HUB
