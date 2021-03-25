@@ -65,8 +65,8 @@
         prompt: "Specify password. (Which will be used on youre next login.)"
         private: yes
         confirm: yes
-      - name: "sshpubkey"
-        prompt: "Add SSH-RSA Pub key located in %home%/%user%.ssh/id_rsa.pub ."
+      - name: "sshkeyID"
+        prompt: "Specify SSH key ID example engineer@admin1-pc."
         private: no
         confirm: no
 
@@ -100,7 +100,7 @@
           - set system login user {{ username }} authentication plaintext-password {{ password }}
           - set service ssh disable-password-authentication
           - set system login user {{ username }} authentication public-keys {{ sshkeyID }} key "{{ lookup('file', 'id_rsa.pub') }}"
-          - set system login user {{ username }} authentication public-keys {{ sshkeyID }} type {{ sshkeytype }}
+          - set system login user {{ username }} authentication public-keys {{ sshkeyID }} type ssh-rsa
 
 
     tasks:
