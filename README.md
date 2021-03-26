@@ -54,7 +54,7 @@ VyOS + Ansible Playbooks for different kinds of setup.
 * Removes pre-configured NTP servers
 # DMVPN Playbooks
 
-## Hub Playbook
+## Hub
 
  All these groups can be changed in the playbooks to youre needs.
 
