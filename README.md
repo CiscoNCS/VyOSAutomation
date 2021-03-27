@@ -56,13 +56,14 @@ VyOS + Ansible Playbooks for different kinds of setup.
 
 ## Hub
 
- All these groups can be changed in the playbooks to youre needs.
+ All groups can be changed in the playbook.
 
 ESP group = ESP-HUB
 IKE group = IKE-HUB
 IPSEC Profile = NHRPVPN 
 * Configures tunnel interface (Tun1)
 * Configure tunnel IP
+* Configures tunnel IP key to 1
 * Configure tunnel authentication (8 Character long)
 * Enables multicast on the tunnel interface
 * Configures tunnel interface holdtime to 600
@@ -82,3 +83,18 @@ IPSEC Profile = NHRPVPN
 * Configures IPSEC profile to use preshared key
 * Configures IPSEC profile with the preshared key
 * Binds the IPSEC profile to the tunnel interface
+
+## Spoke
+
+All groups can be changed in the playbook.
+
+ESP group = ESP-HUB
+IKE group = IKE-HUB
+IPSEC Profile = NHRPVPN 
+* Configures tunnel interface (Tun1)
+* Configure tunnel IP
+* Configures tunnel IP key to 1
+* Configure tunnel authentication (8 Character long)
+* Enables multicast on the tunnel interface
+* Configures tunnel interface holdtime to 600
+* 
