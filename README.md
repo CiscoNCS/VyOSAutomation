@@ -95,6 +95,7 @@ IPSEC Profile = NHRPVPN
 * Configure tunnel IP
 * Configures tunnel IP key to 1
 * Configure tunnel authentication (8 Character long)
-* Enables multicast on the tunnel interface
 * Configures tunnel interface holdtime to 600
-* 
+* Maps NHRP server (usually the tunnel IP) to the NBMA Address (Public IP)
+* Maps spoke tunnel to NHRP server (Tunnel IP) for registeration.
+* Enables multicast on the tunnel interface
