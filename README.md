@@ -99,3 +99,17 @@ IPSEC Profile = NHRPVPN
 * Maps NHRP server (usually the tunnel IP) to the NBMA Address (Public IP)
 * Maps spoke tunnel to NHRP server (Tunnel IP) for registeration.
 * Enables multicast on the tunnel interface
+* Disables compression in the ESP Group
+* Configures ESP lifetime to 28800
+* Configures ESP in transport mode
+* Configures PFS to DH group 21
+* Configures ESP proposal 1 to AES256 and proposol 2 to SHA256
+* Disables IKEv1 reauth 
+* Configures IKE lifetime to 86400
+* Configures IKE proposal 1 DH group to 21
+* Configures IKE proposal 1 encryption to AES256 and Hash to SHA265 (Same applies to IKE proposal 2)
+* Configures IPSEC interface to the WAN
+* Configures IPSEC profile with ESP and IKE group 
+* Configures IPSEC profile to use preshared key
+* Configures IPSEC profile with the preshared key
+* Binds the IPSEC profile to the tunnel interface
